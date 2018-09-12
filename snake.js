@@ -144,29 +144,28 @@ function move() {
 }    
 
 function checkCollision() {
+	for (var z = dots; z > 0; z--) {
+		if (x[0] == x[z] && y[0] == y[z]) {
+			inGame = false;
+		}
 
-    for (var z = dots; z > 0; z--) {
-
-        if ((z > 4) && (x[0] == x[z]) && (y[0] == y[z])) {
-            inGame = false;
-        }
-    }
-
-    if (y[0] >= C_HEIGHT) {
-        inGame = false;
-    }
-
-    if (y[0] < 0) {
-       inGame = false;
-    }
-
-    if (x[0] >= C_WIDTH) {
-      inGame = false;
-    }
-
-    if (x[0] < 0) {
-      inGame = false;
-    }
+		if (y[0] >= C_HEIGHT && downDirection) {
+			y[0] = 0;
+			downDirection = true;
+		}
+		if (y[0] < 0 && upDirection) {
+			y[0] = C_HEIGHT;
+			upDirection = true;
+		}
+		if (x[0] >= C_WIDTH && rightDirection) {
+			x[0] = 0;
+			rightDirection = true;
+		}
+		if (x[0] < 0 && leftDirection) {
+			x[0] = C_WIDTH;
+			leftDirection = true;
+		}
+	}
 }
 
 function locateApple() {
